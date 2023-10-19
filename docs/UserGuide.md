@@ -171,7 +171,7 @@ PharmHub data are saved automatically as a JSON file `[JAR file location]/data/p
 If your changes to the data file makes its format invalid, PharmHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
-### Adding allergies to a patient `[coming in v1.2]`
+### Adding allergies to a patient `[v1.2]`
 What it does: add/edit medication allergies of a patient. When editing allergies, the existing allergies of the person will be removed i.e adding of allergies is not cumulative.You can remove all the person’s tags by typing no/ without specifying any tags after it.
 
 Command format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [no/ALLERGY]…​
@@ -202,7 +202,7 @@ Precise expected output when the command fails:
 Result display will show “[ALLERGY]... is not a valid medication name”
 
 
-### Viewing specific details of an order `[coming in v1.2]`
+### Viewing specific details of an order `[v1.2]`
 What it does: Displays a detailed version of an order to the right side of the screen when called for by command
 
 Command format: vieworder ORDER_NUMBER
@@ -218,7 +218,7 @@ Precise expected output when the command fails:
 If order number does not exist, result display will show “No such order with order number ORDER_NUMBER”
 If order number is of invalid format, eg. contains non-numeric characters, result display will show “Invalid format”
 
-### Adding a new order `[coming in v1.2]`
+### Adding a new order `[v1.2]`
 
 What it does: Adds a new order corresponding to a patient into the system.
 
@@ -242,7 +242,7 @@ MEDICINE_NAME -  A non-empty string.
 
 
 Example commands:
-add_order 1 o/618457 m/ panadol
+addorder 1 o/618457 m/ panadol
 
 
 
