@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderNumber;
 import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
 
@@ -16,7 +17,7 @@ public class JsonAdaptedOrder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
-    private final int orderNumber;
+    private final OrderNumber orderNumber;
 
     private final JsonAdaptedPerson person;
 
@@ -27,7 +28,7 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("orderNumber") int orderNumber,
+    public JsonAdaptedOrder(@JsonProperty("orderNumber") OrderNumber orderNumber,
                             @JsonProperty("person") JsonAdaptedPerson person,
                             @JsonProperty("medicineName") String medicineName,
                             @JsonProperty("status") JsonAdaptedStatus orderStatus) {
