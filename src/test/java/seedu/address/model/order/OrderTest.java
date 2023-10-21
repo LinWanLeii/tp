@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class OrderTest {
     private final Status orderStatus = new Status(Status.OrderStatus.PENDING);
-    private final Order order = new Order(1, ALICE, "panadol", orderStatus);
+    private final Order order = new Order(new OrderNumber("1"), ALICE, "panadol", orderStatus);
     @Test
     public void toStringMethod() {
         String expected = Order.class.getCanonicalName() + "{orderNumber=" + order.getOrderNumber()
@@ -28,7 +28,7 @@ class OrderTest {
         //null -> returns false
         assertFalse(order.equals(null));
 
-        Order newOrder = new Order(1, ALICE, "panadol", orderStatus);
+        Order newOrder = new Order(new OrderNumber("1"), ALICE, "panadol", orderStatus);
 
         //all attributes same -> return true
         assertTrue(order.equals(newOrder));

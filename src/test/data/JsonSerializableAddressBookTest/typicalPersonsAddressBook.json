@@ -51,7 +51,7 @@
     "allergies" : [ ]
   } ],
   "orders" : [ {
-    "orderNumber" : 1,
+    "orderNumber" : "1",
     "person" : {
       "name" : "Alice Pauline",
       "phone" : "94351253",
@@ -63,7 +63,7 @@
     "medicineName" : "Panadol",
     "status" : "PENDING"
   }, {
-    "orderNumber" : 1234,
+    "orderNumber" : "1234",
     "person" : {
       "name" : "Benson Meier",
       "phone" : "98765432",

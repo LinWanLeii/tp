@@ -59,5 +59,9 @@ public class OrderNumber {
         return value.hashCode();
     }
 
+    public int getIntValue() {
+        return Integer.parseInt(value);
+    }
+
 }
 

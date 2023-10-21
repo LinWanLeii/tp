@@ -58,8 +58,8 @@ public class OrderList implements Iterable<Order> {
      * @return Order with specified orderNumber, if any.
      */
     public Optional<Order> getOrder(int orderNumber) {
-        Stream<Order> filtered = internalList.stream().filter(order -> order.getOrderNumber().
-                                                            toString().equals(String.valueOf(orderNumber)));
+        Stream<Order> filtered = internalList.stream().filter(order ->
+                order.getOrderNumber().getIntValue() == orderNumber);
         return filtered.findFirst();
     }
 

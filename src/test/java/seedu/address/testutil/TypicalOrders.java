@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderNumber;
 import seedu.address.model.order.Status;
 
 /**
@@ -17,10 +18,10 @@ public class TypicalOrders {
     public static final Status STATUS_PENDING = new Status(Status.OrderStatus.PENDING);
     public static final Status STATUS_COMPLETED = new Status(Status.OrderStatus.COMPLETED);
 
-    public static final Order ALICE_PANADOL_ORDER = new Order(ORDER_NUMBER_FIRST_ORDER,
+    public static final Order ALICE_PANADOL_ORDER = new Order(new OrderNumber("1"),
             TypicalPersons.ALICE, "Panadol", STATUS_PENDING);
 
-    public static final Order BENSON_PANADOL_ORDER = new Order(ORDER_NUMBER_SECOND_ORDER,
+    public static final Order BENSON_PANADOL_ORDER = new Order(new OrderNumber("1234"),
             TypicalPersons.BENSON, "Panadol", STATUS_COMPLETED);
 
     public static List<Order> getTypicalOrders() {

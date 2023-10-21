@@ -19,8 +19,7 @@ class OrderListTest {
     private final Status orderStatus = new Status(Status.OrderStatus.PENDING);
     @BeforeEach
     public void init() {
-        System.out.println("happ");
-        order = new Order(1, ALICE, "panadol", orderStatus);
+        order = new Order(new OrderNumber("1"), ALICE, "panadol", orderStatus);
         list = new ArrayList<>();
         list.add(order);
         orderList = new OrderList();

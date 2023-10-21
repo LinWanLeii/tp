@@ -41,7 +41,7 @@ class AddOrderCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.addOrder(order);
 
-        String expectedMessage = AddOrderCommand.MESSAGE_ADD_ORDER_SUCCESS;
+        String expectedMessage = AddOrderCommand.MESSAGE_SUCCESS;
 
         assertCommandSuccess(addOrderCommand, model, expectedMessage, expectedModel);
     }
@@ -54,7 +54,7 @@ class AddOrderCommandTest {
 
         AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, orderNumber, medicineName, false);
 
-        String expectedMessage = AddOrderCommand.MESSAGE_ADD_ORDER_SUCCESS;
+        String expectedMessage = AddOrderCommand.MESSAGE_SUCCESS;
 
         Order order = new Order(orderNumber, personInFilteredList, medicineName, orderStatus);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -73,7 +73,7 @@ class AddOrderCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.addOrder(order);
 
-        String expectedMessage = AddOrderCommand.MESSAGE_ADD_ORDER_SUCCESS;
+        String expectedMessage = AddOrderCommand.MESSAGE_SUCCESS;
 
         assertCommandSuccess(addOrderCommand, model, expectedMessage, expectedModel);
     }
