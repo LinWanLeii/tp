@@ -26,8 +26,7 @@ import seedu.address.testutil.PersonBuilder;
 
 class AddOrderCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final OrderNumber orderNumber = new OrderNumber("1");
+    private final OrderNumber orderNumber = new OrderNumber("2");
 
     private final String medicineName = "panadol";
     private final Status orderStatus = new Status(Status.OrderStatus.PENDING);
@@ -35,6 +34,8 @@ class AddOrderCommandTest {
 
     @Test
     public void execute_unfilteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
         AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, orderNumber, medicineName, false);
         Order order = new Order(orderNumber, model.getFilteredPersonList().get(0), medicineName, orderStatus);
 
@@ -48,6 +49,8 @@ class AddOrderCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
         showPersonAtIndex(model, INDEX_FIRST);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
@@ -65,6 +68,8 @@ class AddOrderCommandTest {
 
     @Test
     void execute_allergicToMedicineAndIgnoreAllergy_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
         Person person = new PersonBuilder().withAllergies(medicineName).build();
         model.addPerson(person);
         AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, orderNumber, medicineName, true);
@@ -80,6 +85,8 @@ class AddOrderCommandTest {
 
     @Test
     public void execute_filteredList_failure() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
         showPersonAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -98,6 +105,8 @@ class AddOrderCommandTest {
 
     @Test
     void execute_allergicToMedicineAndNotIgnoreAllergy_failure() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
         Person person = new PersonBuilder().withAllergies(medicineName).build();
         model.addPerson(person);
         AddOrderCommand addOrderCommand = new AddOrderCommand(Index.fromOneBased(model.getFilteredPersonList().size()),

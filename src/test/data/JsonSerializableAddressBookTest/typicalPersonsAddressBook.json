@@ -53,12 +53,12 @@
   "orders" : [ {
     "orderNumber" : "1",
     "person" : {
-      "name" : "Alice Pauline",
-      "phone" : "94351253",
-      "email" : "alice@example.com",
-      "address" : "123, Jurong West Ave 6, #08-111",
-      "tags" : [ "friends" ],
-      "allergies" : [ "Aspirin" ]
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "tags" : [ ],
+      "allergies" : [ ]
     },
     "medicineName" : "Panadol",
     "status" : "PENDING"

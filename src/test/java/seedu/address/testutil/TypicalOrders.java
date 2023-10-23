@@ -23,8 +23,10 @@ public class TypicalOrders {
 
     public static final Order BENSON_PANADOL_ORDER = new Order(new OrderNumber("1234"),
             TypicalPersons.BENSON, "Panadol", STATUS_COMPLETED);
+    public static final Order CARL_PANADOL_ORDER = new Order(new OrderNumber("1"),
+            TypicalPersons.CARL, "Panadol", STATUS_PENDING);
 
     public static List<Order> getTypicalOrders() {
-        return new ArrayList<>(Arrays.asList(ALICE_PANADOL_ORDER, BENSON_PANADOL_ORDER));
+        return new ArrayList<>(Arrays.asList(CARL_PANADOL_ORDER, BENSON_PANADOL_ORDER));
     }
 }
