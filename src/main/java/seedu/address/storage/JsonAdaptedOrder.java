@@ -62,6 +62,15 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
         }
 
+        if (orderNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderNumber.class.getSimpleName()));
+        }
+
+        if (!OrderNumber.isValidOrderNumber(orderNumber)) {
+            throw new IllegalValueException(OrderNumber.MESSAGE_CONSTRAINTS);
+        }
+
         if (medicineName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "medicineName"));
         }

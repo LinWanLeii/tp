@@ -21,6 +21,8 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Orders list contains duplicate order(s).";
+    public static final String MESSAGE_INVALID_PERSON = "Order(s) belongs to person not in the Persons list";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -63,6 +65,12 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
             Order order = jsonAdaptedOrder.toModelType();
+            if (addressBook.hasOrder(order)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
+            if (addressBook.getPersonList().stream().noneMatch(order.getPerson()::equals)) {
+                throw new IllegalValueException(MESSAGE_INVALID_PERSON);
+            }
             addressBook.addOrder(order);
         }
         return addressBook;

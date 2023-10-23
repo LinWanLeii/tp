@@ -35,6 +35,8 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Order added successfully.";
 
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
+
     private final Index index;
     private final OrderNumber orderNumber;
     private final String medicineName;
@@ -65,6 +67,7 @@ public class AddOrderCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+
         Person person = lastShownList.get(index.getZeroBased());
 
         // If person is allergic to medicine and ignoreAllergy is false, throw exception
@@ -72,7 +75,12 @@ public class AddOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ALLERGIC_TO_MEDICINE);
         }
 
-        model.addOrder(new Order(orderNumber, person, medicineName, orderStatus));
+        Order toAdd = new Order(orderNumber, person, medicineName, orderStatus);
+        if (model.hasOrder(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
+
+        model.addOrder(toAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
