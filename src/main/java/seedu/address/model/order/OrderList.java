@@ -41,6 +41,10 @@ public class OrderList implements Iterable<Order> {
      * Adds an order to the list.
      */
     public void add(Order toAdd) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateOrderException();
+        }
         internalList.add(toAdd);
     }
 

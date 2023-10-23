@@ -127,4 +127,12 @@ class AddOrderCommandTest {
         assertFalse(addOrderCommand.equals(null));
     }
 
+    @Test
+    public void execute_duplicateOrder_throwsCommandException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Order orderInList = model.getFilteredOrderList().get(0);
+        assertCommandFailure(new AddOrderCommand(INDEX_FIRST_PERSON, orderInList.getOrderNumber() , medicineName),
+                model, AddOrderCommand.MESSAGE_DUPLICATE_ORDER);
+    }
+
 }
