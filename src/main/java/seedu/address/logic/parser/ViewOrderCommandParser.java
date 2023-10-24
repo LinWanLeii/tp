@@ -23,6 +23,6 @@ public class ViewOrderCommandParser implements Parser<ViewOrderCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewOrderCommand.MESSAGE_USAGE));
         }
 
-        return new ViewOrderCommand(Integer.parseInt(trimmedArgs));
+        return new ViewOrderCommand(trimmedArgs);
     }
 }

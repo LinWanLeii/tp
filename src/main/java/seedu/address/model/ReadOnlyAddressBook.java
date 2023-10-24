@@ -20,5 +20,5 @@ public interface ReadOnlyAddressBook {
 
     ObservableList<Order> getOrderList();
 
-    Optional<Order> getOrder(int orderNumber);
+    Optional<Order> getOrder(String orderNumber);
 }

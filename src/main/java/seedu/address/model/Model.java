@@ -86,10 +86,6 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-    /**
-     * Returns true if an order with the same identity as {@code order} exists in the address book.
-     */
-    boolean hasOrder(Order order);
 
     /**
      * Adds the given order.
@@ -107,14 +103,13 @@ public interface Model {
      * @param orderNumber
      * @return Order with the specified orderNumber.
      */
-    Optional<Order> getOrder(int orderNumber);
+    Optional<Order> getOrder(String orderNumber);
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.
      * {@code target} must exist in the address book.
      * The Order identity of {@code editedOrder} must not be the same as another existing Order in the address book.
      */
     void setOrder(Order target, Order editedOrder);
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

@@ -22,13 +22,13 @@ public class ViewOrderCommand extends Command {
             + "Parameters: ORDER_NUMBER\n"
             + "Example: " + COMMAND_WORD + " 12345";
 
-    public static final String MESSAGE_ORDER_NOT_FOUND = "No order found with order number #%d";
+    public static final String MESSAGE_ORDER_NOT_FOUND = "No order found with order number #%s";
 
-    public static final String MESSAGE_VIEW_ORDER_SUCCESS = "Displayed Order #%d";
+    public static final String MESSAGE_VIEW_ORDER_SUCCESS = "Displayed Order #%s";
 
-    private final int orderNumber;
+    private final String orderNumber;
 
-    public ViewOrderCommand(int orderNumber) {
+    public ViewOrderCommand(String orderNumber) {
         this.orderNumber = orderNumber;
     }
 
