@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
@@ -23,7 +24,7 @@ import seedu.address.model.person.Person;
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Order#isSameOrder(Order)
  */
 public class OrderList implements Iterable<Order> {
     private final ObservableList<Order> internalList = FXCollections.observableArrayList();
@@ -46,6 +47,29 @@ public class OrderList implements Iterable<Order> {
             throw new DuplicateOrderException();
         }
         internalList.add(toAdd);
+    }
+
+
+    /**
+     * Deletes orders in this list which belong to given person.
+     * @param person
+     */
+    public void removeOrdersWithPerson(Person person) {
+        requireNonNull(person);
+        List<Order> temp = internalList.stream().filter(x -> !x.getPerson().equals(person))
+                .collect(Collectors.toList());
+        this.setOrders(temp);
+    }
+
+    /**
+     * Edits orders in this list which belong to given person.
+     * @param person
+     */
+    public void editOrdersWithPerson(Person person, Person newPerson) {
+        requireNonNull(person);
+        List<Order> temp = internalList.stream().map(x -> x.getPerson().equals(person)
+                ? new Order(x.getOrderNumber(), newPerson, x.getMedicineName()) : x).collect(Collectors.toList());
+        this.setOrders(temp);
     }
 
     /**

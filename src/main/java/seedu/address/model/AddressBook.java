@@ -98,15 +98,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        orders.editOrdersWithPerson(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} and the corresponding orders from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        orders.removeOrdersWithPerson(key);
         persons.remove(key);
     }
 
@@ -161,6 +162,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         orders.setOrder(target, editedOrder);
     }
+
 
     //// util methods
 
