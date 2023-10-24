@@ -58,7 +58,7 @@ public class ViewOrderCommand extends Command {
         }
 
         ViewOrderCommand otherViewOrderCommand = (ViewOrderCommand) other;
-        return orderNumber == otherViewOrderCommand.orderNumber;
+        return orderNumber.equals(otherViewOrderCommand.orderNumber);
     }
 
     @Override

@@ -37,7 +37,7 @@ class ViewOrderCommandTest {
 
     @Test
     public void execute_nonExistentOrderNumber_throwsCommandException() {
-        int orderNumber = 51920341;
+        String orderNumber = "51920341";
         ViewOrderCommand command = new ViewOrderCommand(orderNumber);
         assertCommandFailure(command, model, String.format(ViewOrderCommand.MESSAGE_ORDER_NOT_FOUND, orderNumber));
     }
@@ -66,7 +66,7 @@ class ViewOrderCommandTest {
 
     @Test
     public void toStringMethod() {
-        int orderNumber = 54321;
+        String orderNumber = "54321";
         ViewOrderCommand viewOrderCommand = new ViewOrderCommand(orderNumber);
         String expected = ViewOrderCommand.class.getCanonicalName() + "{orderNumber=" + orderNumber + "}";
         assertEquals(expected, viewOrderCommand.toString());

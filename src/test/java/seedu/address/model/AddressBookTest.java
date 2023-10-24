@@ -121,9 +121,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public Optional<Order> getOrder(int orderNumber) {
+        public Optional<Order> getOrder(String orderNumber) {
             return orders.stream().filter(order ->
-                    order.getOrderNumber().getIntValue() == orderNumber).findFirst();
+                    order.getOrderNumber().toString().equals(orderNumber)).findFirst();
         }
     }
 

@@ -14,7 +14,7 @@ class ViewOrderCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsViewOrderCommand() {
-        assertParseSuccess(parser, "1", new ViewOrderCommand(1));
+        assertParseSuccess(parser, "1", new ViewOrderCommand("1"));
     }
 
     @Test
