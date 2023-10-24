@@ -17,7 +17,7 @@ public class JsonAdaptedOrder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
-    private final OrderNumber orderNumber;
+    private final String orderNumber;
 
     private final JsonAdaptedPerson person;
 
@@ -28,7 +28,7 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("orderNumber") OrderNumber orderNumber,
+    public JsonAdaptedOrder(@JsonProperty("orderNumber") String orderNumber,
                             @JsonProperty("person") JsonAdaptedPerson person,
                             @JsonProperty("medicineName") String medicineName,
                             @JsonProperty("status") JsonAdaptedStatus orderStatus) {
@@ -42,7 +42,7 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order order) {
-        this.orderNumber = order.getOrderNumber();
+        this.orderNumber = order.getOrderNumber().toString();
         this.person = new JsonAdaptedPerson(order.getPerson());
         this.medicineName = order.getMedicineName();
         this.orderStatus = new JsonAdaptedStatus(order.getStatus());
@@ -55,12 +55,12 @@ public class JsonAdaptedOrder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
+        if (person == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
+        }
         final Person p = person.toModelType();
         final Status s = orderStatus.toModelType();
 
-        if (p == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
-        }
 
         if (orderNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -78,7 +78,7 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
 
-        return new Order(orderNumber, p, medicineName, s);
+        return new Order(new OrderNumber(orderNumber), p, medicineName, s);
     }
 
 
