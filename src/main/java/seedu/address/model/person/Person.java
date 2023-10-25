@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.InfoObject;
 import seedu.address.model.allergy.Allergy;
 import seedu.address.model.tag.Tag;
 
@@ -15,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements InfoObject {
 
     // Identity fields
     private final Name name;
