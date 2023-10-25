@@ -25,6 +25,9 @@ public class Messages {
     public static final String MESSAGE_ALLERGIC_TO_MEDICINE = "Warning: This patient is allergic to this medicine! add"
             + " ia/ (ignore allergy) to the end of the command to add this medicine to the order anyway.";
 
+    public static final String MESSAGE_NO_ORDER_WITH_GIVEN_ORDER_NUMBER =
+            "There is no order with %1$s as order number.";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.

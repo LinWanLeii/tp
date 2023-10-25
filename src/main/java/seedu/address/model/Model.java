@@ -91,6 +91,12 @@ public interface Model {
     void addOrder(Order order);
 
     /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     */
+    void deleteOrder(Order target);
+
+    /**
      * Gets the order with the specified orderNumber.
      * @param orderNumber
      * @return Order with the specified orderNumber.

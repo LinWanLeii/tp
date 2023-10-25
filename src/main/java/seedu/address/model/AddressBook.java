@@ -127,6 +127,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         orders.add(o);
     }
 
+    /**
+     * Removes {@code key} {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeOrder(Order key) {
+        orders.remove(key);
+    }
+
 
     /**
      * Retrieves the order with the specified order number
