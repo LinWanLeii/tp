@@ -18,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.InfoObject;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -192,13 +193,19 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleDisplayInfo(InfoObject objectToDisplay) {
+        assert(objectToDisplay instanceof Order || objectToDisplay instanceof Person);
         if (objectToDisplay instanceof Order) {
             Order order = (Order) objectToDisplay;
             OrderDisplay orderDisplay = new OrderDisplay(order);
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(orderDisplay.getRoot());
+        } else if (objectToDisplay instanceof Person){
+            Person person = (Person) objectToDisplay;
+            PersonDisplay personDisplay = new PersonDisplay(person);
+            infoDisplayPlaceholder.getChildren().clear();
+            infoDisplayPlaceholder.getChildren().add(personDisplay.getRoot());
         } else {
-            throw new RuntimeException("Unknown object to display");
+            throw new RuntimeException("Invalid object to display");
         }
     }
 
