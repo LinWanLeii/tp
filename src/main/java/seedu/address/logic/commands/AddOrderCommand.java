@@ -53,7 +53,7 @@ public class AddOrderCommand extends Command {
         this.orderNumber = orderNumber;
         this.medicineName = medicineName;
         this.ignoreAllergy = ignoreAllergy;
-        this.orderStatus = new Status(Status.OrderStatus.NOT_PREPARED);
+        this.orderStatus = new Status(Status.OrderStatus.PENDING);
     }
 
     @Override

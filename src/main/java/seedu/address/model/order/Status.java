@@ -1,9 +1,9 @@
 package seedu.address.model.order;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Status of a order.
@@ -15,14 +15,13 @@ public class Status {
      */
     public enum OrderStatus {
         PENDING,
-        NOT_PREPARED,
         PREPARING,
         COMPLETED,
         OTHERS
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Order Status can only be"
-            + OrderStatus.NOT_PREPARED + OrderStatus.PREPARING + OrderStatus.COMPLETED + OrderStatus.OTHERS;
+            + OrderStatus.PENDING + OrderStatus.PREPARING + OrderStatus.COMPLETED + OrderStatus.OTHERS;
     private OrderStatus orderStatus;
 
     /**
