@@ -1,10 +1,14 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -140,4 +144,13 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //---------------- Tests for unmodifiableSetToCommaSeparatedStr --------------------------------------
+    @Test
+    public void unmodifiableSetToCommaSeparatedStr_validInputs_correctResults() {
+        // Empty set
+        assertEquals("", StringUtil.unmodifiableSetToCommaSeparatedStr(Collections.emptySet()));
+
+        // Set with 1 object
+        assertEquals("1", StringUtil.unmodifiableSetToCommaSeparatedStr(new HashSet<>(List.of(1))));
+    }
 }

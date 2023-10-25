@@ -12,9 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 
-
-
-
 /**
  * Finds and displays the order with the specified order number.
  */
