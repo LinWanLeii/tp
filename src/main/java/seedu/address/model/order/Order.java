@@ -17,15 +17,17 @@ public class Order implements InfoObject {
     private final int orderNumber;
     private final Person person;
     private final String medicineName;
+    private final Status orderStatus;
 
     /**
      * Every field must be present and not null.
      */
-    public Order(int orderNumber, Person person, String medicineName) {
+    public Order(int orderNumber, Person person, String medicineName, Status orderStatus) {
         requireAllNonNull(orderNumber, person, medicineName);
         this.orderNumber = orderNumber;
         this.person = person;
         this.medicineName = medicineName;
+        this.orderStatus = orderStatus;
     }
 
     public int getOrderNumber() {
@@ -38,6 +40,9 @@ public class Order implements InfoObject {
 
     public String getMedicineName() {
         return medicineName;
+    }
+    public Status getStatus() {
+        return orderStatus;
     }
 
     /**
@@ -72,6 +77,7 @@ public class Order implements InfoObject {
                 .add("orderNumber", orderNumber)
                 .add("person", person)
                 .add("medicineName", medicineName)
+                .add("status", orderStatus)
                 .toString();
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
 
 
@@ -20,6 +21,7 @@ public class JsonAdaptedOrder {
     private final JsonAdaptedPerson person;
 
     private final String medicineName;
+    private final JsonAdaptedStatus orderStatus;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given person details.
@@ -27,10 +29,12 @@ public class JsonAdaptedOrder {
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("orderNumber") int orderNumber,
                             @JsonProperty("person") JsonAdaptedPerson person,
-                            @JsonProperty("medicineName") String medicineName) {
+                            @JsonProperty("medicineName") String medicineName,
+                            @JsonProperty("status") JsonAdaptedStatus orderStatus) {
         this.orderNumber = orderNumber;
         this.person = person;
         this.medicineName = medicineName;
+        this.orderStatus = orderStatus;
     }
 
     /**
@@ -40,6 +44,7 @@ public class JsonAdaptedOrder {
         this.orderNumber = order.getOrderNumber();
         this.person = new JsonAdaptedPerson(order.getPerson());
         this.medicineName = order.getMedicineName();
+        this.orderStatus = new JsonAdaptedStatus(order.getStatus());
     }
 
 
@@ -50,6 +55,7 @@ public class JsonAdaptedOrder {
      */
     public Order toModelType() throws IllegalValueException {
         final Person p = person.toModelType();
+        final Status s = orderStatus.toModelType();
 
         if (p == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
@@ -58,8 +64,11 @@ public class JsonAdaptedOrder {
         if (medicineName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "medicineName"));
         }
+        if (s == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
 
-        return new Order(orderNumber, p, medicineName);
+        return new Order(orderNumber, p, medicineName, s);
     }
 
 

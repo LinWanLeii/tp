@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
@@ -28,6 +29,8 @@ public class OrderCard extends UiPart<Region> {
     private Label medicineName;
     @FXML
     private Label id;
+    @FXML
+    private Label status;
 
     /**
      * Creates a {@code OrderCode} with the given {@code Order} and index to display.
@@ -40,5 +43,6 @@ public class OrderCard extends UiPart<Region> {
         personName.setText(order.getPerson().getName().fullName);
         address.setText(order.getPerson().getAddress().value);
         medicineName.setText(order.getMedicineName());
+        status.setText(order.getStatus().toString());
     }
 }

@@ -13,6 +13,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
 
 /**
@@ -38,6 +39,7 @@ public class AddOrderCommand extends Command {
     private final String medicineName;
 
     private final Boolean ignoreAllergy;
+    private final Status orderStatus;
 
 
     /**
@@ -51,6 +53,7 @@ public class AddOrderCommand extends Command {
         this.orderNumber = orderNumber;
         this.medicineName = medicineName;
         this.ignoreAllergy = ignoreAllergy;
+        this.orderStatus = new Status(Status.OrderStatus.NOT_PREPARED);
     }
 
     @Override
@@ -68,7 +71,7 @@ public class AddOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ALLERGIC_TO_MEDICINE);
         }
 
-        model.addOrder(new Order(orderNumber, person, medicineName));
+        model.addOrder(new Order(orderNumber, person, medicineName, orderStatus));
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_ADD_ORDER_SUCCESS);
     }
