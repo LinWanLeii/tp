@@ -17,7 +17,7 @@ import seedu.address.model.order.OrderNumber;
  * Deletes an order identified using it's order number from the address book.
  */
 public class DeleteOrderCommand extends Command {
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the order identified by the order number given.\n"
