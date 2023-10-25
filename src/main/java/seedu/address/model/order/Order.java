@@ -44,19 +44,6 @@ public class Order implements InfoObject {
     public Status getStatus() {
         return orderStatus;
     }
-    /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSameOrder(Order otherOrder) {
-        if (otherOrder == this) {
-            return true;
-        }
-
-        return otherOrder != null
-                && (otherOrder.getOrderNumber() == getOrderNumber());
-    }
-
 
     /**
      * Returns true if both orders have the same order number.

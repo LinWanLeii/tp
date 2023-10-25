@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.order.Status;
 
 /**
@@ -40,7 +41,7 @@ class JsonAdaptedStatus {
      */
     public Status toModelType() throws IllegalValueException {
         if (!Status.isValidOrderStatus(orderStatus)) {
-            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Allergy.MESSAGE_CONSTRAINTS);
         }
         return new Status(Status.OrderStatus.valueOf(orderStatus));
     }

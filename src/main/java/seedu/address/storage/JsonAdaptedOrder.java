@@ -60,8 +60,6 @@ public class JsonAdaptedOrder {
         }
         final Person p = person.toModelType();
         final Status s = orderStatus.toModelType();
-
-
         if (orderNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderNumber.class.getSimpleName()));
