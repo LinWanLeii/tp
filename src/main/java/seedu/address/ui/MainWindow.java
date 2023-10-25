@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             OrderDisplay orderDisplay = new OrderDisplay(order);
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(orderDisplay.getRoot());
-        } else if (objectToDisplay instanceof Person){
+        } else if (objectToDisplay instanceof Person) {
             Person person = (Person) objectToDisplay;
             PersonDisplay personDisplay = new PersonDisplay(person);
             infoDisplayPlaceholder.getChildren().clear();
