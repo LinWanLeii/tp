@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Set;
 
 /**
  * Helper functions for handling strings.
@@ -63,6 +64,25 @@ public class StringUtil {
             return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
         } catch (NumberFormatException nfe) {
             return false;
+        }
+    }
+
+    /**
+     * Returns a string representation of an unmodifiableSet, as a comma separated string of the objects in
+     * the set
+     * @param unmodifiableSet
+     * @return Comma separated string
+     */
+    public static String unmodifiableSetToCommaSeparatedStr(Set<? extends Object> unmodifiableSet) {
+        StringBuilder builder = new StringBuilder();
+        for (Object o : unmodifiableSet) {
+            builder.append(o.toString()).append(", ");
+        }
+
+        if (builder.length() > 0) {
+            return builder.substring(0, builder.length() - 2);
+        } else {
+            return "";
         }
     }
 }
