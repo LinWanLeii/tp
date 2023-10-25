@@ -348,7 +348,7 @@
     -fx-background-radius: 0;
 }
 
-#tags, #allergies{
+#tags, #allergies {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
