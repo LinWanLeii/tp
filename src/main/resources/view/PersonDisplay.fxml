@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane styleClass="pane-with-border" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+  <VBox spacing="20">
+
+    <HBox spacing="10">
+      <Label styleClass="cell_order_label" text="Name: " underline="true" />
+      <Label fx:id="name" styleClass="cell_order_label" text="Label" />
+    </HBox>
+
+    <HBox spacing="10">
+      <Label styleClass="cell_order_label" text="Address: " underline="true" />
+      <Label fx:id="address" styleClass="cell_order_label" text="Label" />
+    </HBox>
+
+    <HBox spacing="10">
+      <Label styleClass="cell_order_label" text="Phone Number: " underline="true" />
+      <Label fx:id="phoneNumber" styleClass="cell_order_label" text="Label" />
+    </HBox>
+
+    <HBox spacing="10">
+      <Label styleClass="cell_order_label" text="Email: " underline="true" />
+      <Label fx:id="email" styleClass="cell_order_label" text="Label" />
+    </HBox>
+
+    <HBox spacing="10">
+      <Label styleClass="cell_order_label" text="Allergies: " underline="true" />
+      <Label fx:id="allergies" styleClass="cell_order_label" text="Label" />
+    </HBox>
+  </VBox>
+
+
+</StackPane>
