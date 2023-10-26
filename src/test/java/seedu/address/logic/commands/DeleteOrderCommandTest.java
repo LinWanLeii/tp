@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ class DeleteOrderCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_PERSON);
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
                 Messages.formatOrder(orderToDelete));
@@ -48,10 +48,10 @@ class DeleteOrderCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showOrderAtIndex(model, INDEX_FIRST_PERSON);
+        showOrderAtIndex(model, INDEX_FIRST);
 
-        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_PERSON);
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
                 Messages.formatOrder(orderToDelete));
@@ -65,9 +65,9 @@ class DeleteOrderCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showOrderAtIndex(model, INDEX_FIRST_PERSON);
+        showOrderAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
 
@@ -78,14 +78,14 @@ class DeleteOrderCommandTest {
 
     @Test
     public void equals() {
-        DeleteOrderCommand deleteFirstOrderCommand = new DeleteOrderCommand(INDEX_FIRST_PERSON);
-        DeleteOrderCommand deleteSecondOrderCommand = new DeleteOrderCommand(INDEX_SECOND_PERSON);
+        DeleteOrderCommand deleteFirstOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+        DeleteOrderCommand deleteSecondOrderCommand = new DeleteOrderCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstOrderCommand.equals(deleteFirstOrderCommand));
 
         // same values -> returns true
-        DeleteOrderCommand deleteFirstOrderCommandCopy = new DeleteOrderCommand(INDEX_FIRST_PERSON);
+        DeleteOrderCommand deleteFirstOrderCommandCopy = new DeleteOrderCommand(INDEX_FIRST);
         assertTrue(deleteFirstOrderCommand.equals(deleteFirstOrderCommandCopy));
 
         // different types -> returns false
