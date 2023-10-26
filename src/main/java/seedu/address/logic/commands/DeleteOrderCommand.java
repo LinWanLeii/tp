@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,22 +13,22 @@ import seedu.address.model.order.Order;
 
 
 /**
- * Deletes an order identified using it's order number from the address book.
+ * Deletes an order identified using it's displayed index from the address book.
  */
 public class DeleteOrderCommand extends Command {
     public static final String COMMAND_WORD = "deleteo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the order identified by the order number given.\n"
-            + "Parameters: ORDERNUMBER (must be a positive integer)\n"
+            + ": Deletes the order identified by the index number used in the displayed order list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
 
-    private final int orderNumber;
+    private final Index index;
 
-    public DeleteOrderCommand(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public DeleteOrderCommand(Index index) {
+        this.index = index;
     }
 
     @Override
@@ -36,15 +36,14 @@ public class DeleteOrderCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
         List<Order> orderList = model.getFilteredOrderList();
-        Optional<Order> order = orderList.stream().filter(x -> x.getOrderNumber() == orderNumber).findFirst();
 
-        if (order.isEmpty()) {
-            throw new CommandException(String.format(Messages.MESSAGE_NO_ORDER_WITH_GIVEN_ORDER_NUMBER,
-                    orderNumber));
+
+        if (index.getZeroBased() >= orderList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
-
-        model.deleteOrder(order.get());
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderNumber));
+        Order order = orderList.get(index.getZeroBased());
+        model.deleteOrder(order);
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, Messages.formatOrder(order)));
 
     }
 
@@ -60,12 +59,14 @@ public class DeleteOrderCommand extends Command {
 
         DeleteOrderCommand otherDeleteOrderCommand = (DeleteOrderCommand) other;
 
-        return orderNumber == (otherDeleteOrderCommand.orderNumber);
+        return index.equals(otherDeleteOrderCommand.index);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("orderNumber", orderNumber).toString();
+        return new ToStringBuilder(this)
+                .add("targetIndex", index)
+                .toString();
     }
 
 
