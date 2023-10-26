@@ -127,7 +127,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<Order> getOrder(String orderNumber) {
+    public Optional<Order> getOrder(int orderNumber) {
         return addressBook.getOrder(orderNumber);
     }
     @Override

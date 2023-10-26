@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.DeleteOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderNumber;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -17,9 +16,9 @@ public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
      */
     public DeleteOrderCommand parse(String args) throws ParseException {
         try {
-            OrderNumber orderNumber = ParserUtil.parseOrderNumber(args);
+            int orderNumber = Integer.parseInt(args.trim());
             return new DeleteOrderCommand(orderNumber);
-        } catch (ParseException pe) {
+        } catch (NumberFormatException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE), pe);
         }

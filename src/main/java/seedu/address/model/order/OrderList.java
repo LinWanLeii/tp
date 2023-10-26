@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
@@ -39,10 +38,6 @@ public class OrderList implements Iterable<Order> {
      * Adds an order to the list.
      */
     public void add(Order toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateOrderException();
-        }
         internalList.add(toAdd);
     }
 
@@ -55,29 +50,6 @@ public class OrderList implements Iterable<Order> {
         if (!internalList.remove(toRemove)) {
             throw new OrderNotFoundException();
         }
-    }
-
-
-    /**
-     * Deletes orders in this list which belong to given person.
-     * @param person
-     */
-    public void removeOrdersWithPerson(Person person) {
-        requireNonNull(person);
-        List<Order> temp = internalList.stream().filter(x -> !x.getPerson().equals(person))
-                .collect(Collectors.toList());
-        this.setOrders(temp);
-    }
-
-    /**
-     * Edits orders in this list which belong to given person.
-     * @param person
-     */
-    public void editOrdersWithPerson(Person person, Person newPerson) {
-        requireNonNull(person);
-        List<Order> temp = internalList.stream().map(x -> x.getPerson().equals(person)
-                ? new Order(x.getOrderNumber(), newPerson, x.getMedicineName()) : x).collect(Collectors.toList());
-        this.setOrders(temp);
     }
 
     /**

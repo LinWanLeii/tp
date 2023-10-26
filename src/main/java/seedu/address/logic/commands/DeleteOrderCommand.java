@@ -10,7 +10,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderNumber;
 
 
 /**
@@ -26,9 +25,9 @@ public class DeleteOrderCommand extends Command {
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
 
-    private final OrderNumber orderNumber;
+    private final int orderNumber;
 
-    public DeleteOrderCommand(OrderNumber orderNumber) {
+    public DeleteOrderCommand(int orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -37,15 +36,15 @@ public class DeleteOrderCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
         List<Order> orderList = model.getFilteredOrderList();
-        Optional<Order> order = orderList.stream().filter(x -> x.getOrderNumber().equals(orderNumber)).findFirst();
+        Optional<Order> order = orderList.stream().filter(x -> x.getOrderNumber() == orderNumber).findFirst();
 
         if (order.isEmpty()) {
             throw new CommandException(String.format(Messages.MESSAGE_NO_ORDER_WITH_GIVEN_ORDER_NUMBER,
-                    orderNumber.toString()));
+                    orderNumber));
         }
 
         model.deleteOrder(order.get());
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderNumber.toString()));
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderNumber));
 
     }
 
@@ -61,7 +60,7 @@ public class DeleteOrderCommand extends Command {
 
         DeleteOrderCommand otherDeleteOrderCommand = (DeleteOrderCommand) other;
 
-        return orderNumber.equals(otherDeleteOrderCommand.orderNumber);
+        return orderNumber == (otherDeleteOrderCommand.orderNumber);
     }
 
     @Override
