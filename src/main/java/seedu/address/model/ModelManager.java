@@ -125,6 +125,17 @@ public class ModelManager implements Model {
     public Optional<Order> getOrder(int orderNumber) {
         return addressBook.getOrder(orderNumber);
     }
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+    @Override
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        addressBook.setOrder(target, editedOrder);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

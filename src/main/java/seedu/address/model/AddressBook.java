@@ -112,6 +112,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     //// order-level operations
+    /**
+     * Returns true if an order with the same identity as {@code order} exists in the address book.
+     */
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orders.contains(order);
+    }
 
     /**
      * Adds an order to the address book.
@@ -127,6 +134,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Optional<Order> getOrder(int orderNumber) {
         return orders.getOrder(orderNumber);
+    }
+    /**
+     * Replaces the given order {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the address book.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(target, editedOrder);
     }
 
     //// util methods

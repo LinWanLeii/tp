@@ -14,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ALLERGY = new Prefix("no/");
     public static final Prefix PREFIX_ORDERNUMBER = new Prefix("o/");
     public static final Prefix PREFIX_MEDICINENAME = new Prefix("m/");
-
+    public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_IGNORE_ALLERGY = new Prefix("ia/");
 
 }

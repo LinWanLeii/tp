@@ -43,10 +43,26 @@ public class Status {
      * @param newStatus The new status of the order.
      */
     public void updateStatus(OrderStatus newStatus) {
-        assert isValidOrderStatus(orderStatus)
+        assert isValidOrderStatus(newStatus)
                 : "Update on OrderStatus can only be PENDING/PREPARING/COMPLETED/OTHERS";
         checkArgument(isValidOrderStatus(newStatus), MESSAGE_CONSTRAINTS);
         orderStatus = newStatus;
+    }
+    /**
+     * Converts String to order Status.
+     *
+     * @param status The status of the order.
+     */
+    public static OrderStatus toOrderStatus(String status) {
+        assert isValidOrderStatus(status)
+                : "OrderStatus can only be PENDING/PREPARING/COMPLETED/OTHERS";
+        checkArgument(isValidOrderStatus(status), MESSAGE_CONSTRAINTS);
+        for (OrderStatus validStatus : OrderStatus.values()) {
+            if (validStatus.toString().equals(status.toUpperCase())) {
+                return validStatus;
+            }
+        }
+        return null;
     }
 
     /**

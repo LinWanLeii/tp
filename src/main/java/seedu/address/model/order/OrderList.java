@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.order.exceptions.OrderNotFoundException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 
 /**
@@ -23,7 +25,13 @@ public class OrderList implements Iterable<Order> {
     private final ObservableList<Order> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-
+    /**
+     * Returns true if the list contains an equivalent Order as the given argument.
+     */
+    public boolean contains(Order toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameOrder);
+    }
     /**
      * Adds an order to the list.
      */
@@ -53,6 +61,25 @@ public class OrderList implements Iterable<Order> {
     public void setOrders(List<Order> orders) {
         requireAllNonNull(orders);
         internalList.setAll(orders);
+    }
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new OrderNotFoundException();
+        }
+
+        if (!target.isSameOrder(editedOrder) && contains(editedOrder)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.set(index, editedOrder);
     }
 
     /**
