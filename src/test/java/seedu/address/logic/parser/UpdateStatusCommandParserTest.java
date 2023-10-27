@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.UpdateStatusCommand;
 
+
 public class UpdateStatusCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_STATUS;
