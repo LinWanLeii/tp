@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -394,7 +394,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 In this combined use case, a pharmacist adds a medication order for a patient using PharmHub. The system first allows the pharmacist to select a patient from the list and provide order details. It then checks for potential contraindications based on the patient's allergies and issues a warning if necessary. The pharmacist can acknowledge the warning and proceed with the order by adding an "IA" flag to the command. Once confirmed, the system records the order and sends a confirmation to the pharmacist. The use case also addresses various extensions for error handling.
 
 
+      Use case resumes at step 2.
 
+<br><br>**Use case: Update patient Order Status**
+
+**MSS**
+
+1.  User requests to list Order
+2.  PharmHub shows a list of Order
+3.  User requests to update order status for a order in the list
+4.  PharmHub updates order status for the corresponding order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PharmHub shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given status is invalid.
+
+    * 3a1. PharmHub shows an error message.
+
+      Use case resumes at step 2.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
