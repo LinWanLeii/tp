@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 
 /**
@@ -76,7 +76,7 @@ public class OrderList implements Iterable<Order> {
         }
 
         if (!target.isSameOrder(editedOrder) && contains(editedOrder)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateOrderException();
         }
 
         internalList.set(index, editedOrder);

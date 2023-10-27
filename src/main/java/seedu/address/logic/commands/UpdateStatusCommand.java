@@ -185,11 +185,11 @@ public class UpdateStatusCommand extends Command {
                 return false;
             }
 
-            EditOrderDescriptor otherEditPersonDescriptor = (EditOrderDescriptor) other;
-            return Objects.equals(orderNumber, otherEditPersonDescriptor.orderNumber)
-                    && Objects.equals(person, otherEditPersonDescriptor.person)
-                    && Objects.equals(medicineName, otherEditPersonDescriptor.medicineName)
-                    && Objects.equals(status, otherEditPersonDescriptor.status);
+            EditOrderDescriptor otherEditOrderDescriptor = (EditOrderDescriptor) other;
+            return Objects.equals(orderNumber, otherEditOrderDescriptor.orderNumber)
+                    && Objects.equals(person, otherEditOrderDescriptor.person)
+                    && Objects.equals(medicineName, otherEditOrderDescriptor.medicineName)
+                    && Objects.equals(status, otherEditOrderDescriptor.status);
         }
 
         @Override

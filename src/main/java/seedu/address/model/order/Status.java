@@ -36,18 +36,6 @@ public class Status {
         checkArgument(isValidOrderStatus(orderStatus), MESSAGE_CONSTRAINTS);
         this.orderStatus = orderStatus;
     }
-
-    /**
-     * Updates the Status of an order with newStatus.
-     *
-     * @param newStatus The new status of the order.
-     */
-    public void updateStatus(OrderStatus newStatus) {
-        assert isValidOrderStatus(newStatus)
-                : "Update on OrderStatus can only be PENDING/PREPARING/COMPLETED/OTHERS";
-        checkArgument(isValidOrderStatus(newStatus), MESSAGE_CONSTRAINTS);
-        orderStatus = newStatus;
-    }
     /**
      * Converts String to order Status.
      *
