@@ -62,7 +62,6 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
-
     /**
      * Returns true if an order with the same identity as {@code order} exists in the address book.
      */

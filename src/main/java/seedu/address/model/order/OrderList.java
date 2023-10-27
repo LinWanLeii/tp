@@ -48,6 +48,16 @@ public class OrderList implements Iterable<Order> {
         }
         internalList.add(toAdd);
     }
+    /**
+     * Removes the equivalent order from the list.
+     * The order must exist in the list.
+     */
+    public void remove(Order toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new OrderNotFoundException();
+        }
+    }
 
 
     /**
@@ -68,19 +78,9 @@ public class OrderList implements Iterable<Order> {
     public void editOrdersWithPerson(Person person, Person newPerson) {
         requireNonNull(person);
         List<Order> temp = internalList.stream().map(x -> x.getPerson().equals(person)
-                ? new Order(x.getOrderNumber(), newPerson, x.getMedicineName()) : x).collect(Collectors.toList());
+                ? new Order(x.getOrderNumber(), newPerson, x.getMedicineName(), x.getStatus()) : x)
+                .collect(Collectors.toList());
         this.setOrders(temp);
-    }
-
-    /**
-     * Removes the equivalent order from the list.
-     * The order must exist in the list.
-     */
-    public void remove(Order toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new OrderNotFoundException();
-        }
     }
 
     /**

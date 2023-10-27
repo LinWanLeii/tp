@@ -15,6 +15,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderNumber;
 import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
 
@@ -80,7 +81,7 @@ public class UpdateStatusCommand extends Command {
     private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor) {
         assert orderToEdit != null;
 
-        int updatedOrderNumber = editOrderDescriptor.getOrderNumber().orElse(orderToEdit.getOrderNumber());
+        OrderNumber updatedOrderNumber = orderToEdit.getOrderNumber();
         Person updatedPerson = editOrderDescriptor.getPerson().orElse(orderToEdit.getPerson());
         String updatedMedicineName = editOrderDescriptor.getMedicineName().orElse(orderToEdit.getMedicineName());
         Status updatedStatus = editOrderDescriptor.getStatus().orElse(orderToEdit.getStatus());

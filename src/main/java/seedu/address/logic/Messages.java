@@ -85,5 +85,19 @@ public class Messages {
                 .append(order.getMedicineName());
         return builder.toString();
     }
+    /**
+     * Formats the {@code order} for display to the user.
+     */
+    public static String format(Order order) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(order.getOrderNumber())
+                .append("; Phone: ")
+                .append(order.getPerson())
+                .append("; Email: ")
+                .append(order.getMedicineName())
+                .append("; Address: ")
+                .append(order.getStatus());
+        return builder.toString();
+    }
 
 }
