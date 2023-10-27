@@ -8,12 +8,14 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import org.junit.jupiter.api.Test;
 
 class OrderTest {
-    private final Order order = new Order(1, ALICE, "panadol");
+    private final Status orderStatus = new Status(Status.OrderStatus.PENDING);
+    private final Order order = new Order(1, ALICE, "panadol", orderStatus);
     @Test
     public void toStringMethod() {
         String expected = Order.class.getCanonicalName() + "{orderNumber=" + order.getOrderNumber()
                 + ", person=" + order.getPerson().toString()
-                + ", medicineName=" + order.getMedicineName() + "}";
+                + ", medicineName=" + order.getMedicineName()
+                + ", status=" + order.getStatus() + "}";
         assertEquals(expected, order.toString());
     }
 
@@ -26,7 +28,7 @@ class OrderTest {
         //null -> returns false
         assertFalse(order.equals(null));
 
-        Order newOrder = new Order(1, ALICE, "panadol");
+        Order newOrder = new Order(1, ALICE, "panadol", orderStatus);
 
         //all attributes same -> return true
         assertTrue(order.equals(newOrder));

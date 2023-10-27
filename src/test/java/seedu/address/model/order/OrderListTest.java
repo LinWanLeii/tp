@@ -16,10 +16,11 @@ class OrderListTest {
     private OrderList orderList;
 
     private Order order;
+    private final Status orderStatus = new Status(Status.OrderStatus.PENDING);
     @BeforeEach
     public void init() {
         System.out.println("happ");
-        order = new Order(1, ALICE, "panadol");
+        order = new Order(1, ALICE, "panadol", orderStatus);
         list = new ArrayList<>();
         list.add(order);
         orderList = new OrderList();

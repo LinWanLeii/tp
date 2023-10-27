@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -50,7 +51,8 @@ public class AddressBookTest {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        Order order = new Order(12, ALICE, "panadol");
+        Status orderStatus = new Status(Status.OrderStatus.PENDING);
+        Order order = new Order(12, ALICE, "panadol", orderStatus);
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Order> newOrders = Arrays.asList(order);
         AddressBookStub newData = new AddressBookStub(newPersons, newOrders);
