@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "u:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "o:Order" as Order MODEL_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Order" as Order MODEL_COLOR
+end box
+[--> LogicManager : execute("addorder 1 m/aspirin o/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addorder 1 m/aspirin o/1")
+activate AddressBookParser
+
+create AddOrderCommand
+AddressBookParser -> AddOrderCommand
+activate AddOrderCommand
+
+AddOrderCommand --> AddressBookParser
+deactivate AddOrderCommand
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> AddOrderCommand : execute()
+activate AddOrderCommand
+
+Create Order
+AddOrderCommand -> Order : Order(1,p,aspirin)
+activate Order
+
+Order --> AddOrderCommand
+deactivate Order
+
+AddOrderCommand -> Model : hasOrder (o)
+activate Model
+
+deactivate Model
+
+AddOrderCommand -> Model : addOrder(o)
+activate Model
+
+Model -> AddOrderCommand
+deactivate Model
+
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+AddOrderCommand -[hidden]-> LogicManager : result
+destroy AddOrderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
