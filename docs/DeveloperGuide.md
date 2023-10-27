@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -319,36 +319,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. PharmHub shows an error message.
 
-      Use case resumes at step 2.    
+      Use case resumes at step 2.
 
-<br><br>**Use case: Add medication order for a patient**
+**Use Case: Add Medication Order for a Patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  PharmHub shows a list of persons
-3.  User requests to add a medication order for a patient in the list
-4.  PharmHub adds a medication order for the corresponding patient
+1. User, a pharmacist, requests to list persons.
+2. PharmHub shows a list of persons.
+3. User selects a patient from the list to add a medication order for.
+4. PharmHub presents a form for entering medication order details, including medication name and dosage.
+5. User enters the required order details and submits the order request.
+6. PharmHub validates the order information, including the medication name.
+7. PharmHub checks if the prescribed medication matches any of the patient's allergies.
+8. If the prescribed medication is found in the patient's allergy list, PharmHub displays a warning message.
+9. Pharmacist acknowledges the allergy warning but chooses to proceed by adding an "IA" (Ignore Allergy) flag to the command.
+10. Pharmacist confirms the order by resubmitting with the "IA" flag.
+11. PharmHub creates the order with the provided information, including the "IA" flag.
+12. PharmHub confirms the successful creation of the order, noting the allergy warning and the "IA" flag.
+13. Pharmacist reviews the order details, including patient information and prescribed medication.
+14. User confirms the order request.
+15. PharmHub creates the medication order for the patient and stores it in the system.
+16. PharmHub confirms the successful creation of the order.
+17. The system sends an order confirmation to the pharmacist.
 
-    Use case ends.
+**Use case ends.**
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of persons is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. PharmHub shows an error message.
-
-      Use case resumes at step 2.
+* 3a. The given index to select a patient is invalid.
+    * 3a1. PharmHub shows an error message indicating an invalid index.
+    * 3a2. Use case resumes at step 3.
 
 * 3b. The given medication name is invalid.
+    * 3b1. PharmHub shows an error message indicating an invalid medication name.
+    * 3b2. Use case resumes at step 4.
 
-    * 3a1. PharmHub shows an error message.
+In this combined use case, a pharmacist adds a medication order for a patient using PharmHub. The system first allows the pharmacist to select a patient from the list and provide order details. It then checks for potential contraindications based on the patient's allergies and issues a warning if necessary. The pharmacist can acknowledge the warning and proceed with the order by adding an "IA" flag to the command. Once confirmed, the system records the order and sends a confirmation to the pharmacist. The use case also addresses various extensions for error handling.
 
-      Use case resumes at step 2.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -357,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be able to hold up to 1000 orders without a noticeable sluggishness in performance for typical usage.
-*{More to be added}*
+    *{More to be added}*
 
 ### Glossary
 
@@ -379,15 +393,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -396,16 +410,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -413,6 +427,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
