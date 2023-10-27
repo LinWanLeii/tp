@@ -31,6 +31,8 @@ public class Status {
      */
     public Status(OrderStatus orderStatus) {
         requireNonNull(orderStatus);
+        assert isValidOrderStatus(orderStatus)
+                : "OrderStatus can only be PENDING/PREPARING/COMPLETED/OTHERS";
         checkArgument(isValidOrderStatus(orderStatus), MESSAGE_CONSTRAINTS);
         this.orderStatus = orderStatus;
     }
@@ -41,6 +43,8 @@ public class Status {
      * @param newStatus The new status of the order.
      */
     public void updateStatus(OrderStatus newStatus) {
+        assert isValidOrderStatus(orderStatus)
+                : "Update on OrderStatus can only be PENDING/PREPARING/COMPLETED/OTHERS";
         checkArgument(isValidOrderStatus(newStatus), MESSAGE_CONSTRAINTS);
         orderStatus = newStatus;
     }
