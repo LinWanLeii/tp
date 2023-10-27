@@ -71,4 +71,8 @@ shadowJar {
     archiveFileName = 'PharmHub.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
