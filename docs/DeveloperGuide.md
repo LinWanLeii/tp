@@ -154,19 +154,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Order feature
-
-#### Implementation
-
-`Order` is implemented as a class in `Model`.  
-
-An order can be added to Model using the `addorder` command.  
-Adding of an order with order number that already exits is  not allowed.
-
-The following sequence diagram shows how `addorder` works on an example input.
-
-![AddOrderSequenceDiagram](images/AddOrderSequenceDiagram.png)
-
 
 ### \[Proposed\] Undo/redo feature
 
@@ -269,6 +256,19 @@ These are 3 different options for these details:
 
 Using these specifications, the CommandResult from executing `listo` and `listp` will inform the Ui of which
 panel to attach to the listPanelPlaceHolder
+
+### Order feature
+
+#### Implementation
+
+`Order` is implemented as a class in `Model`.
+
+An order can be added to Model using the `addorder` command.  
+Adding of an order with order number that already exits is  not allowed.
+
+The following sequence diagram shows how `addorder` works on an example input.
+
+![AddOrderSequenceDiagram](images/AddOrderSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
