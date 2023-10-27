@@ -252,6 +252,24 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Listing all orders
+
+The listing all orders functionality is supported by the listPanelPlaceholder in the Ui.
+
+On start of application, two listPanels (PersonListPanel, OrderListPanel) is created, and person list panel is attached 
+to the ListPanel Placeholder as default.
+
+On execution of the any listing commands (`listo` or `listp`), the resultant CommandResult contains details on which
+panel to choose to display.
+
+These are 3 different options for these details:
+* Person - Panel will display list of people
+* Order - Panel will display list of orders
+* NoChange - Panel will keep whatever was there previously
+
+Using these specifications, the CommandResult from executing `listo` and `listp` will inform the Ui of which
+panel to attach to the listPanelPlaceHolder
+
 
 --------------------------------------------------------------------------------------------------------------------
 
