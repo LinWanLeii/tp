@@ -35,7 +35,7 @@ public class UpdateStatusCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_STATUS_SUCCESS = "Edited Order Status: %1$s";
     public static final String MESSAGE_NOT_EDITED = "Status to edit to must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Operation would result in duplicate order";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;

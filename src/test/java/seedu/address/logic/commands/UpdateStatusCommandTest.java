@@ -1,7 +1,12 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -49,5 +54,43 @@ public class UpdateStatusCommandTest {
         String expected = UpdateStatusCommand.class.getCanonicalName() + "{index=" + index + ", editOrderDescriptor="
                 + editOrderDescriptor + "}";
         assertEquals(expected, updateStatusCommand.toString());
+    }
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        int outOfBoundIndex = INDEX_SECOND_ORDER.getZeroBased() + 10;
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+                .withStatus(VALID_STATUS_BOB)
+                .build();
+        UpdateStatusCommand updateStatusCommand =
+                new UpdateStatusCommand(Index.fromZeroBased(outOfBoundIndex), descriptor);
+
+        // Ensure the index provided is out of bounds
+        assertCommandFailure(updateStatusCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+    }
+    @Test
+    public void isAnyFieldEdited_someFieldsEdited_returnsTrue() {
+        EditOrderDescriptor descriptor = new EditOrderDescriptor();
+        descriptor.setOrderNumber(1);
+
+        // At least one field in the descriptor is edited
+        assertTrue(descriptor.isAnyFieldEdited());
+    }
+    @Test
+    public void equals_sameDescriptor_returnsTrue() {
+        EditOrderDescriptor descriptor = new EditOrderDescriptor();
+        EditOrderDescriptor sameDescriptor = new EditOrderDescriptor();
+
+        // Both descriptors have the same field values, so they are considered equal
+        assertEquals(descriptor, sameDescriptor);
+    }
+
+    @Test
+    public void equals_differentDescriptors_returnsFalse() {
+        EditOrderDescriptor descriptor = new EditOrderDescriptor();
+        EditOrderDescriptor differentDescriptor = new EditOrderDescriptor();
+        differentDescriptor.setOrderNumber(1);
+
+        // The descriptors have different field values, so they are not considered equal
+        assertNotEquals(descriptor, differentDescriptor);
     }
 }

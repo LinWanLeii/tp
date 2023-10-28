@@ -42,4 +42,27 @@ public class UpdateStatusCommandParserTest {
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
+    @Test
+    public void parse_missingStatusPrefix_throwsParseException() {
+        // Missing PREFIX_STATUS
+        String userInput = "updates 1 done";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateStatusCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidIndex_throwsParseException() {
+        // Invalid index
+        String userInput = "updates a " + PREFIX_STATUS + "PENDING";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateStatusCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidStatus_throwsParseException() {
+        // Invalid status
+        String userInput = "updates 1 " + PREFIX_STATUS + "INVALID_STATUS";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateStatusCommand.MESSAGE_USAGE));
+    }
 }
