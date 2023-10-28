@@ -135,6 +135,11 @@ public class ModelManager implements Model {
 
         addressBook.setOrder(target, editedOrder);
     }
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

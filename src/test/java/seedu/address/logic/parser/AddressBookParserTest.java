@@ -108,8 +108,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_viewPerson() throws Exception {
         ViewPersonCommand command = (ViewPersonCommand) parser.parseCommand(
-                ViewPersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new ViewPersonCommand(INDEX_FIRST_PERSON), command);
+                ViewPersonCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new ViewPersonCommand(INDEX_FIRST), command);
     }
 
     @Test
