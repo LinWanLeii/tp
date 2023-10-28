@@ -114,12 +114,6 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-
-    @Override
-    public boolean hasOrder(Order order) {
-        requireNonNull(order);
-        return addressBook.hasOrder(order);
-    }
     @Override
     public void addOrder(Order order) {
         requireNonNull(order);

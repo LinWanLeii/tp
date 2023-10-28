@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -72,7 +73,6 @@ public class Messages {
                 .append(order.getStatus());
         return builder.toString();
     }
-
     /**
      * Formats the {@code person} for display to the user.
      */
@@ -85,19 +85,4 @@ public class Messages {
                 .append(order.getMedicineName());
         return builder.toString();
     }
-    /**
-     * Formats the {@code order} for display to the user.
-     */
-    public static String format(Order order) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(order.getOrderNumber())
-                .append("; Phone: ")
-                .append(order.getPerson())
-                .append("; Email: ")
-                .append(order.getMedicineName())
-                .append("; Address: ")
-                .append(order.getStatus());
-        return builder.toString();
-    }
-
 }

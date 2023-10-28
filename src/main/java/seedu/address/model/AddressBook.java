@@ -122,14 +122,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if an order with the same identity as {@code order} exists in the address book.
-     */
-    public boolean hasOrder(Order order) {
-        requireNonNull(order);
-        return orders.contains(order);
-    }
-
-    /**
      * Adds an order to the address book.
      */
     public void addOrder(Order o) {

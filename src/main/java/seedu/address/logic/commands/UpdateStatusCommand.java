@@ -118,7 +118,7 @@ public class UpdateStatusCommand extends Command {
      * corresponding field value of the order.
      */
     public static class EditOrderDescriptor {
-        private int orderNumber;
+        private OrderNumber orderNumber;
         private Person person;
         private String medicineName;
         private Status status;
@@ -143,11 +143,11 @@ public class UpdateStatusCommand extends Command {
             return CollectionUtil.isAnyNonNull(orderNumber, person, medicineName, status);
         }
 
-        public void setOrderNumber(int orderNumber) {
+        public void setOrderNumber(OrderNumber orderNumber) {
             this.orderNumber = orderNumber;
         }
 
-        public Optional<Integer> getOrderNumber() {
+        public Optional<OrderNumber> getOrderNumber() {
             return Optional.ofNullable(orderNumber);
         }
 

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderNumber;
 import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
 
@@ -19,7 +20,7 @@ public class OrderBuilder {
             .withAllergies("Aspirin")
             .build();
 
-    private int orderNumber;
+    private OrderNumber orderNumber;
     private Person person;
     private String medicineName;
     private Status status;
@@ -27,7 +28,7 @@ public class OrderBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public OrderBuilder() {
-        orderNumber = Integer.parseInt(DEFAULT_ORDER_NUMBER);
+        orderNumber = new OrderNumber(DEFAULT_ORDER_NUMBER);
         person = ALICE;
         medicineName = DEFAULT_MEDICINE_NAME;
         status = new Status(Status.toOrderStatus(DEFAULT_STATUS));

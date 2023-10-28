@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderNumber;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.OrderBuilder;
 
@@ -70,7 +71,7 @@ public class UpdateStatusCommandTest {
     @Test
     public void isAnyFieldEdited_someFieldsEdited_returnsTrue() {
         EditOrderDescriptor descriptor = new EditOrderDescriptor();
-        descriptor.setOrderNumber(1);
+        descriptor.setOrderNumber(new OrderNumber("1"));
 
         // At least one field in the descriptor is edited
         assertTrue(descriptor.isAnyFieldEdited());
@@ -88,7 +89,7 @@ public class UpdateStatusCommandTest {
     public void equals_differentDescriptors_returnsFalse() {
         EditOrderDescriptor descriptor = new EditOrderDescriptor();
         EditOrderDescriptor differentDescriptor = new EditOrderDescriptor();
-        differentDescriptor.setOrderNumber(1);
+        differentDescriptor.setOrderNumber(new OrderNumber("1"));
 
         // The descriptors have different field values, so they are not considered equal
         assertNotEquals(descriptor, differentDescriptor);
