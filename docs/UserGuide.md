@@ -62,13 +62,13 @@ Status when added.
 Status are used to describe the process at which the order is at.
 Status can only be updated/modified following their chronological order.
 
-<span style="background-color: red; border-radius: 20%; padding: 1px;">PENDING/PD</span>
+<span style="background-color: red; border-radius: 20%; padding: 1px; color: white">PENDING/PD</span>
 ->
-<span style="background-color: blue; border-radius: 20%; padding: 1px;">PREPARING/PR</span>
+<span style="background-color: blue; border-radius: 20%; padding: 1px; color: white">PREPARING/PR</span>
 ->
-<span style="background-color: green; border-radius: 20%; padding: 1px;">COMPLETED/CP</span>
+<span style="background-color: green; border-radius: 20%; padding: 1px; color: white">COMPLETED/CP</span>
 ->
-<span style="background-color: black; border-radius: 20%; padding: 1px;">CANCELED/CC</span>
+<span style="background-color: black; border-radius: 20%; padding: 1px; color: white">CANCELED/CC</span>
 
 Status can be identified either in their full form or in their short form as shown above (FullForm/ShortForm). Status are all case-insensitive as well.
 
